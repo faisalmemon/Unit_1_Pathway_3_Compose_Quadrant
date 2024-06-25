@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -32,9 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Compose_QuadrantTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ComposeCard(
-                        title = stringResource(id = R.string.text_composable),
-                        longDescription = stringResource(id = R.string.text_composable_description),
+                    ComposeFramer(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -44,16 +43,29 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ComposeCardTL(modifier: Modifier = Modifier){
-        ComposeCard(
-            modifier = modifier,
-            title = stringResource(id = R.string.text_composable),
-            longDescription = stringResource(id = R.string.text_composable_description),
-            backgroundColor = colorResource(id = R.color.first_color)
-        )
+fun ComposeFramer(modifier: Modifier = Modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxHeight(),
+    ) {
+        ComposeCardTL(modifier)
+        ComposeCardTR(modifier)
+    }
+
 }
+
 @Composable
-fun ComposeCardTR(modifier: Modifier = Modifier){
+fun ComposeCardTL(modifier: Modifier = Modifier) {
+    ComposeCard(
+        modifier = modifier,
+        title = stringResource(id = R.string.text_composable),
+        longDescription = stringResource(id = R.string.text_composable_description),
+        backgroundColor = colorResource(id = R.color.first_color)
+    )
+}
+
+@Composable
+fun ComposeCardTR(modifier: Modifier = Modifier) {
     ComposeCard(
         modifier = modifier,
         title = stringResource(id = R.string.image_composable),
@@ -61,8 +73,9 @@ fun ComposeCardTR(modifier: Modifier = Modifier){
         backgroundColor = colorResource(id = R.color.second_color)
     )
 }
+
 @Composable
-fun ComposeCardBL(modifier: Modifier = Modifier){
+fun ComposeCardBL(modifier: Modifier = Modifier) {
     ComposeCard(
         modifier = modifier,
         title = stringResource(id = R.string.row_composable),
@@ -70,8 +83,9 @@ fun ComposeCardBL(modifier: Modifier = Modifier){
         backgroundColor = colorResource(id = R.color.third_color)
     )
 }
+
 @Composable
-fun ComposeCardBR(modifier: Modifier = Modifier){
+fun ComposeCardBR(modifier: Modifier = Modifier) {
     ComposeCard(
         modifier = modifier,
         title = stringResource(id = R.string.column_composable),
@@ -111,16 +125,10 @@ fun ComposeCard(
 }
 
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Compose_QuadrantTheme {
-        ComposeCard(
-            title = stringResource(id = R.string.text_composable),
-            longDescription = stringResource(id = R.string.text_composable_description),
-            backgroundColor = colorResource(id = R.color.first_color)
-        )
+        ComposeFramer()
     }
 }
