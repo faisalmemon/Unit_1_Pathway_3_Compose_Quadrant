@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
             Compose_QuadrantTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     ComposeFramer(
-                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
@@ -54,15 +53,15 @@ fun ComposeFramer(modifier: Modifier = Modifier) {
             modifier = modifier.weight(1f)
 
         ) {
-            ComposeCardTL(modifier.weight(1f))
-            ComposeCardTR(modifier.weight(1f))
+            ComposeCardTL(Modifier.weight(1f))
+            ComposeCardTR(Modifier.weight(1f))
         }
         Row(
             modifier = modifier.weight(1f),
 
             ) {
-            ComposeCardBL(modifier.weight(1f))
-            ComposeCardBR(modifier.weight(1f))
+            ComposeCardBL(Modifier.weight(1f))
+            ComposeCardBR(Modifier.weight(1f))
         }
     }
 
