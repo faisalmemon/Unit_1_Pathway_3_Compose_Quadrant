@@ -5,10 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -44,12 +46,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ComposeFramer(modifier: Modifier = Modifier) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxHeight(),
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
     ) {
-        ComposeCardTL(modifier)
-        ComposeCardTR(modifier)
+        Row(
+            modifier = modifier.weight(1f)
+
+        ) {
+            ComposeCardTL(modifier.weight(1f))
+            ComposeCardTR(modifier.weight(1f))
+        }
+        Row(
+            modifier = modifier.weight(1f),
+
+            ) {
+            ComposeCardBL(modifier.weight(1f))
+            ComposeCardBR(modifier.weight(1f))
+        }
     }
 
 }
@@ -101,26 +115,21 @@ fun ComposeCard(
     backgroundColor: Color = Color.Green,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier.background(backgroundColor),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(
-            modifier = modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+    Column(modifier = modifier.background(backgroundColor)
+        .fillMaxSize()
+        .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(vertical = 16.dp),
-                fontSize = 24.sp
-            )
-            Text(
-                text = longDescription,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier.padding(16.dp)
-            )
-        }
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 16.dp),
+        )
+        Text(
+            text = longDescription,
+            textAlign = TextAlign.Justify,
+        )
     }
 }
 
