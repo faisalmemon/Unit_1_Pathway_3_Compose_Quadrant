@@ -44,6 +44,43 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun ComposeCardTL(modifier: Modifier = Modifier){
+        ComposeCard(
+            modifier = modifier,
+            title = stringResource(id = R.string.text_composable),
+            longDescription = stringResource(id = R.string.text_composable_description),
+            backgroundColor = colorResource(id = R.color.first_color)
+        )
+}
+@Composable
+fun ComposeCardTR(modifier: Modifier = Modifier){
+    ComposeCard(
+        modifier = modifier,
+        title = stringResource(id = R.string.image_composable),
+        longDescription = stringResource(id = R.string.image_composable_description),
+        backgroundColor = colorResource(id = R.color.second_color)
+    )
+}
+@Composable
+fun ComposeCardBL(modifier: Modifier = Modifier){
+    ComposeCard(
+        modifier = modifier,
+        title = stringResource(id = R.string.row_composable),
+        longDescription = stringResource(id = R.string.row_composable_description),
+        backgroundColor = colorResource(id = R.color.third_color)
+    )
+}
+@Composable
+fun ComposeCardBR(modifier: Modifier = Modifier){
+    ComposeCard(
+        modifier = modifier,
+        title = stringResource(id = R.string.column_composable),
+        longDescription = stringResource(id = R.string.column_composable_description),
+        backgroundColor = colorResource(id = R.color.fourth_color)
+    )
+}
+
+@Composable
 fun ComposeCard(
     title: String,
     longDescription: String,
@@ -72,6 +109,9 @@ fun ComposeCard(
         }
     }
 }
+
+
+
 
 @Preview(showBackground = true)
 @Composable
